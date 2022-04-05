@@ -1,0 +1,146 @@
+[
+  {
+    "player": "dajor",
+    "role": "mid",
+    "team": "ast",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "kobbe",
+    "role": "adc",
+    "team": "ast",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 2
+  },
+  {
+    "player": "promisq",
+    "role": "sup",
+    "team": "ast",
+    "residency": "eu",
+    "titles": 1,
+    "internation appearances": 1
+  },
+  {
+    "player": "whiteknight",
+    "role": "top",
+    "team": "ast",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "zanzarah",
+    "role": "jg",
+    "team": "ast",
+    "residency": "cis",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "finn",
+    "role": "top",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 1
+  },
+  {
+    "player": "markoon",
+    "role": "jg",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "nukeduck",
+    "role": "mid",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 1
+  },
+  {
+    "player": "patrik",
+    "role": "adc",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "mikyx",
+    "role": "sup",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 4,
+    "internation appearances": 4
+  },
+  {
+    "player": "advienne",
+    "role": "sup",
+    "team": "xl",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "humanoid",
+    "role": "mid",
+    "team": "fnc",
+    "residency": "eu",
+    "titles": 2,
+    "internation appearances": 4
+  },
+  {
+    "player": "hilyssang",
+    "role": "sup",
+    "team": "fnc",
+    "residency": "eu",
+    "titles": 2,
+    "internation appearances": 5
+  },
+  {
+    "player": "razork",
+    "role": "jg",
+    "team": "fnc",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "upset",
+    "role": "adc",
+    "team": "fnc",
+    "residency": "eu",
+    "titles": 0,
+    "internation appearances": 0
+  },
+  {
+    "player": "wunder",
+    "role": "top",
+    "team": "fnc",
+    "residency": "eu",
+    "titles": 4,
+    "internation appearances": 5
+  },
+  {
+    "player": "brokenblade",
+    "role": "top",
+    "team": "g2",
+    "residency": "tr",
+    "titles": 1,
+    "internation appearances": 1
+  },
+  {
+    "player": "caps",
+    "role": "mid",
+    "team": "g2",
+    "residency": "eu",
+    "titles": 6,
+    "internation appearances": 6
+  }
+]
