@@ -1,21 +1,21 @@
-import tinydb
+from tinydb import TinyDB, Query
 
-def load_players(self):
-
-	self.players = self.player_db.all()
+db = TinyDB('./resource/player_db.json')
 
 
-def save_player_data(self):
+def save_player_data(player_data: dict):
 
-	# TODO use tinydb query for this. I'm crying rn because it's so bad
-	for item in self.player_db.all():
+	name = str(player_data['player'])  # cast to str because father pycharm wants me to
+	player = Query()
+	instances = len(db.search(player.player == name))
 
-		# TODO option to delete the current data and replace it with new data for player updates
-		if item == self.player_data:
+	if instances < 1:
+		db.insert(player_data)
+	elif instances == 1:
+		db.update(player_data, player.player == name)
+	else:
+		print(f'More than two instances in the DB for player {name}! Something is wrong.')  # TODO raise error
 
-			print("Player '{}' already exists in database".format(self.player_data['player']))
-			return
 
-	self.player_db.insert(self.player_data)
-
+save_player_data({"player": "perkz", "role": "MID", "team": "VIT", "residency": "EU", "appearances": 100, "domestic titles": 99})
 	
