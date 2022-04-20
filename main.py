@@ -8,23 +8,35 @@ from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
 
 import json
+from tinydb import TinyDB
 
-with open('resource/fandom_attributes.json') as _:
-    team_dict, role_dict, region_dict = json.load(_)
+import db_utils
 
+# creating db object
+player_db = TinyDB("resource/player_db.json")
+
+
+with open('resource/fandom_attributes.json') as f:
+    team_dict, role_dict, region_dict = json.load(f)
 
 class LoLPlayerScraper:
+
     """Get player statistics from lol fandom and save locally"""
     def __init__(self):
-        service = Service(executable_path=ChromeDriverManager().install())
+        service = Service(executable_path = ChromeDriverManager().install())
         self.driver = webdriver.Chrome(service=service)
-        self._load_players()  # loads players.json into self.players
 
-    def _load_players(self):
-        with open("resource/players.json") as f:
-            self.players = json.load(f)
+        # db stuff
+        self.player_db = TinyDB("resource/player_db.json")
+        db_utils.load_players(self)  # loads player_db data into self.players
 
-    def get_player_stats(self, player_name: str, close_driver=True):
+
+    def close_driver(self):
+
+        self.driver.quit()
+
+
+    def get_player_stats(self, player_name: str, close_driver = True):
         """
         take in a pro player's IGN and get their role, team, residency and return it as a dict
         Player's IGN capitalization is often important!
@@ -48,6 +60,7 @@ class LoLPlayerScraper:
             self.driver.execute_script("window.stop();")
 
         # we could use this instead of the try accept blocks too
+        # something is fucked up for the whiteknight page here
         tournament_results = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID,
                                                                                                   "template-reload-1")))
         tournament_results = tournament_results.text.lower().split()
@@ -83,7 +96,7 @@ class LoLPlayerScraper:
         if close_driver:
             self.driver.quit()
 
-        return {
+        self.player_data = {
             'player': player_name,
             'role': role,
             'team': team,
@@ -92,7 +105,11 @@ class LoLPlayerScraper:
             'domestic titles': d_titles
         }
 
+        db_utils.save_player_data(self)
+        return(self.player_data)
+
 
 if __name__ == "__main__":
+
     scraper = LoLPlayerScraper()
-    print(scraper.get_player_stats('perkz'))
+    scraper.get_player_stats("perkz")
