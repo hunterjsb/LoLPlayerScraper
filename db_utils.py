@@ -12,7 +12,7 @@ def save_player_data(self):
 
 		if item == self.player_data:
 
-			return()
+			return
 
 	self.player_db.insert(self.player_data)
 
