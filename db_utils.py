@@ -15,7 +15,3 @@ def save_player_data(player_data: dict):
 		db.update(player_data, player.player == name)
 	else:
 		print(f'More than two instances in the DB for player {name}! Something is wrong.')  # TODO raise error
-
-
-save_player_data({"player": "perkz", "role": "MID", "team": "VIT", "residency": "EU", "appearances": 100, "domestic titles": 99})
-	
