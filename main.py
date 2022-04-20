@@ -1,11 +1,11 @@
 from selenium import webdriver  # WebDriver
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait  # RIP secret tech
 from selenium.webdriver.support import expected_conditions as EC
 
-from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.firefox import GeckoDriverManager
 
 import json
 from tinydb import TinyDB
@@ -23,8 +23,8 @@ class LoLPlayerScraper:
 
     """Get player statistics from lol fandom and save locally"""
     def __init__(self):
-        service = Service(executable_path = ChromeDriverManager().install())
-        self.driver = webdriver.Chrome(service=service)
+        service = Service(executable_path = GeckoDriverManager().install())
+        self.driver = webdriver.Firefox(service=service)
 
         # db stuff
         self.player_db = TinyDB("resource/player_db.json")
