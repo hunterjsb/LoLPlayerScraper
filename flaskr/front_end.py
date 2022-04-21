@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template
 
 front_end_blueprint = Blueprint('front_end_blueprint', __name__)
 
@@ -7,4 +7,4 @@ front_end_blueprint = Blueprint('front_end_blueprint', __name__)
 def index():
 
     # put epic front end stuff here idk
-    return 'Hello world!'
+    return render_template('index.html')
