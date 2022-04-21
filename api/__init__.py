@@ -1,8 +1,8 @@
 from flask import Flask, request
 from json import dumps
 
-import lolplayerscraper
-import db_utils
+from api.lolplayerscraper import LoLPlayerScraper
+from api import db_utils
 
 app = Flask(__name__)
 
@@ -14,15 +14,10 @@ def get_player_data():
 
         player_name = request.args.get('player_name')
 
-        scraper = lolplayerscraper.LoLPlayerScraper()
+        scraper = LoLPlayerScraper()
         player_data = scraper.get_player_stats(player_name)
         db_utils.save_player_data(player_data)
 
         return dumps(player_data)
 
     return 'Hello world!'
-
-
-if __name__ == '__main__':
-
-    app.run(port=8000, debug=True)
