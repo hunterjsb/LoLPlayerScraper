@@ -2,6 +2,7 @@ from flask import Blueprint
 
 front_end_blueprint = Blueprint('front_end_blueprint', __name__)
 
+
 @front_end_blueprint.route('/')
 def index():
 

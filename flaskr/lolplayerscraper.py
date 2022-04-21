@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait  # RIP secret tech
 from selenium.webdriver.support import expected_conditions as EC
+from datetime import date
 
 from webdriver_manager.firefox import GeckoDriverManager
 
@@ -86,10 +87,12 @@ class LoLPlayerScraper:
             'team': team,
             'residency': res,
             'appearances': appearances,
-            'domestic titles': d_titles
+            'domestic titles': d_titles,
+            'last_updated': date.today().timetuple()[0:3]
         }
 
         return player_data
+
 
 if __name__ == "__main__":
 

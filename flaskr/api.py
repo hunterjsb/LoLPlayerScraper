@@ -9,6 +9,7 @@ api_blueprint = Blueprint('api_blueprint', __name__)
 
 player_db = TinyDB('resource/player_db.json')
 
+
 @api_blueprint.route('/api/get_player_data', methods=['POST'])
 def get_player_data():
 
@@ -22,5 +23,5 @@ def get_player_data():
 
         return dumps(player_data)
 
-    return
+    return None
     

@@ -1,7 +1,8 @@
 from tinydb import TinyDB, Query
 from datetime import date
 
-def save_player_data(player_data: dict, db_object, update_age = 7):
+
+def save_player_data(player_data: dict, db_object, update_age=7):
 
     player_data['last_updated'] = date.today().timetuple()[0:3]
 
@@ -14,16 +15,18 @@ def save_player_data(player_data: dict, db_object, update_age = 7):
         # Add the player to DB
         db_object.insert(player_data)
     elif num_of_instances == 1:
-        if not 'last_updated' in instances[0]:
+        if 'last_updated' not in instances[0]:
             # fixing old records
             db_object.update(player_data, player.player == name)
         elif (date.today() - date(*instances[0]['last_updated'])).days >= update_age:
             # Updated the player's data
             db_object.update(player_data, player.player == name)
     else:
-        print(f'More than two instances in the DB for player {name}! Something is wrong.')  # TODO raise error
+        raise IndexError(f"More than one instance of player {name} found in the database")
+
 
 if __name__ == '__main__':
 
     test_db = TinyDB('./resource/test_player_db.json')
-    save_player_data({"player": "dajor", "role": "mid", "team": "ast", "residency": "eu", "titles": 0, "internation appearances": 0}, test_db)
+    save_player_data({"player": "dajor", "role": "mid", "team": "ast", "residency": "eu", "titles": 0,
+                      "internation appearances": 0}, test_db)
