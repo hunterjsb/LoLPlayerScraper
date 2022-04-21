@@ -1,13 +1,12 @@
-from flask import Flask, request
+from flask import Blueprint, request
 from json import dumps
 
-from api.lolplayerscraper import LoLPlayerScraper
-from api import db_utils
+from flaskr.lolplayerscraper import LoLPlayerScraper
+from flaskr import db_utils
 
-app = Flask(__name__)
+api_blueprint = Blueprint('api_blueprint', __name__)
 
-
-@app.route('/api/get_player_data', methods = ['POST'])
+@api_blueprint.route('/api/get_player_data', methods=['POST'])
 def get_player_data():
 
     if request.method == 'POST':
@@ -20,4 +19,4 @@ def get_player_data():
 
         return dumps(player_data)
 
-    return 'Hello world!'
+    return

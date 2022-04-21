@@ -1,4 +1,4 @@
 /geckodriver.log
 /__pycache__
 /.idea
-/api/__pycache__
+/flaskr/__pycache__

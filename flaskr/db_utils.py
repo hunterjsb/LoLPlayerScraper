@@ -2,7 +2,6 @@ from tinydb import TinyDB, Query
 
 db = TinyDB('./resource/player_db.json')
 
-
 def save_player_data(player_data: dict):
 
 	name = str(player_data['player'])  # cast to str because father pycharm wants me to
