@@ -2,7 +2,7 @@ from tinydb import TinyDB, Query
 from datetime import date
 
 
-def save_player_data(player_data: dict, db_object, update_age=7):
+def save_player_data(player_data: dict, db_object: TinyDB, update_age=7):
 
     player_data['last_updated'] = date.today().timetuple()[0:3]
 

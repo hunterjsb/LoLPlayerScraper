@@ -6,7 +6,6 @@ about_blueprint = Blueprint('about_blueprint', __name__)
 
 @home_blueprint.route('/')
 def index():
-    # put epic front end stuff here idk
     return render_template('index.html', debug_str='foobar')
 
 

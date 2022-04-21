@@ -12,6 +12,7 @@ player_db = TinyDB('resource/player_db.json')
 
 @api_blueprint.route('/api/get_player_data/<player_name>')
 def get_player_data(player_name):
+    """The primary API functionality. GET a player based on their IGN."""
 
     scraper = LoLPlayerScraper()
     player_data = scraper.get_player_stats(player_name)
