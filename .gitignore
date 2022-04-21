@@ -1,3 +1,4 @@
 /geckodriver.log
 /__pycache__
 /.idea
+/api/__pycache__
