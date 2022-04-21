@@ -20,7 +20,7 @@ class LoLPlayerScraper:
         service = Service(executable_path=GeckoDriverManager().install())
         self.driver = webdriver.Firefox(service=service)
 
-    def get_player_stats(self, player_name: str, close_driver = True):
+    def get_player_stats(self, player_name: str, close_driver=True):
         """
         take in a pro player's IGN and get their role, team, residency and return it as a dict
         Player's IGN capitalization is often important!
@@ -91,8 +91,7 @@ class LoLPlayerScraper:
 
         return player_data
 
-
 if __name__ == "__main__":
 
     scraper = LoLPlayerScraper()
-    scraper.get_player_stats("perkz")
+    scraper.get_player_stats('perkz')

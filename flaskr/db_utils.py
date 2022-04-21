@@ -1,16 +1,29 @@
 from tinydb import TinyDB, Query
+from datetime import date
 
-db = TinyDB('./resource/player_db.json')
+def save_player_data(player_data: dict, db_object, update_age = 7):
 
-def save_player_data(player_data: dict):
+    player_data['last_updated'] = date.today().timetuple()[0:3]
 
-	name = str(player_data['player'])  # cast to str because father pycharm wants me to
-	player = Query()
-	instances = len(db.search(player.player == name))
+    name = str(player_data['player'])  # cast to str because father pycharm wants me to
+    player = Query()
+    instances = db_object.search(player.player == name)
+    num_of_instances = len(instances)
 
-	if instances < 1:
-		db.insert(player_data)
-	elif instances == 1:
-		db.update(player_data, player.player == name)
-	else:
-		print(f'More than two instances in the DB for player {name}! Something is wrong.')  # TODO raise error
+    if num_of_instances < 1:
+        # Add the player to DB
+        db_object.insert(player_data)
+    elif num_of_instances == 1:
+        if not 'last_updated' in instances[0]:
+            # fixing old records
+            db_object.update(player_data, player.player == name)
+        elif (date.today() - date(*instances[0]['last_updated'])).days >= update_age:
+            # Updated the player's data
+            db_object.update(player_data, player.player == name)
+    else:
+        print(f'More than two instances in the DB for player {name}! Something is wrong.')  # TODO raise error
+
+if __name__ == '__main__':
+
+    test_db = TinyDB('./resource/test_player_db.json')
+    save_player_data({"player": "dajor", "role": "mid", "team": "ast", "residency": "eu", "titles": 0, "internation appearances": 0}, test_db)
