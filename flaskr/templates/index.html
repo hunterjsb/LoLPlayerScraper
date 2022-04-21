@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
-<head>
-    <meta charset="UTF-8">
-    <title>WordLoL</title>
-</head>
-<body>
-   <h1>Welcome to WordLoL</h1>
-    <p>body test</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Index {% endblock %}</h1>
+    <h2>Welcome to WordLoL!</h2>
+    <h3>{{ debug_str }}</h3>
+{% endblock %}
