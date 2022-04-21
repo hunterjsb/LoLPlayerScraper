@@ -3,12 +3,15 @@ body {
     background-color: rgb(36, 36, 36);
   }
 
-title {
-    padding: 40px 10px;
-    background-color: rgb(36, 36, 36);
-  }
-
 label {
+  color: white
+}
+
+h3 {
+  color: white
+}
+
+p {
   color: white
 }
 
