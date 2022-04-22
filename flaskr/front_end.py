@@ -1,10 +1,18 @@
 from flask import Blueprint, render_template
 
-front_end_blueprint = Blueprint('front_end_blueprint', __name__)
+views_blueprint = Blueprint('views_blueprint', __name__)
 
 
-@front_end_blueprint.route('/')
+@views_blueprint.route('/')
 def index():
+    return render_template('index.html', debug_str='foobar')
 
-    # put epic front end stuff here idk
-    return render_template('index.html')
+
+@views_blueprint.route('/about/')
+def about():
+    return render_template('about.html')
+
+
+@views_blueprint.route('/api/')
+def api():
+    return render_template('api.html')
