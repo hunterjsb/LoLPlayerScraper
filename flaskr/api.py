@@ -1,10 +1,9 @@
-from flask import Blueprint, request
+from flask import Blueprint
 from json import dumps
 from tinydb import TinyDB, Query
 from datetime import date
 
 from flaskr.lolplayerscraper import LoLPlayerScraper
-from flaskr import db_utils
 
 api_blueprint = Blueprint('api_blueprint', __name__)
 
