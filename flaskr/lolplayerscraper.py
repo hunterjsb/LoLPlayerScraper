@@ -45,7 +45,6 @@ class LoLPlayerScraper:
             self.driver.execute_script("window.stop();")
 
         # we could use this instead of the try accept blocks too
-        # something is fucked up for the whiteknight page here
         tournament_results = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located((By.ID,
                                                                                                   "template-reload-1")))
         tournament_results = tournament_results.text.lower().split()
