@@ -4,7 +4,7 @@ import requests
 from datetime import date
 import json
 
-with open('../resource/fandom_attributes.json') as f:
+with open('resource/fandom_attributes.json') as f:
     team_dict, role_dict, region_dict = json.load(f)  # region dict not used atm
 
 

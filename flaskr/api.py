@@ -3,7 +3,7 @@ from json import dumps
 from tinydb import TinyDB, Query
 from datetime import date
 
-from flaskr.lolplayerscraper import LoLPlayerScraper
+from flaskr.bs4scraper import LoLPlayerScraper
 
 api_blueprint = Blueprint('api_blueprint', __name__)
 
