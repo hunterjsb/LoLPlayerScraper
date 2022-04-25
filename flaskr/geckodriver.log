@@ -1,0 +1,22 @@
+1650919810720	geckodriver	INFO	Listening on 127.0.0.1:59696
+1650919811159	mozrunner::runner	INFO	Running command: "/Applications/Firefox.app/Contents/MacOS/firefox-bin" "--marionette" "--remote-debugging-port" "59697" "--remote-allow-hosts" "localhost" "-foreground" "-no-remote" "-profile" "/var/folders/8y/jky7d64d43l4xn4pmw7xl68c0000gn/T/rust_mozprofilep8kV6d"
+1650919811484	Marionette	INFO	Marionette enabled
+UNSUPPORTED (log once): POSSIBLE ISSUE: unit 1 GLD_TEXTURE_INDEX_2D is unloadable and bound to sampler type (Float) - using zero texture because texture unloadable
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /var/folders/8y/jky7d64d43l4xn4pmw7xl68c0000gn/T/rust_mozprofilep8kV6d/search.json.mozlz4", (void 0)))
+console.error: BackgroundUpdate: 
+  _reasonsToNotScheduleUpdates: Failed to check for Maintenance Service Registry Key: [Exception... "Component returned failure code: 0x80004001 (NS_ERROR_NOT_IMPLEMENTED) [nsIUpdateProcessor.getServiceRegKeyExists]"  nsresult: "0x80004001 (NS_ERROR_NOT_IMPLEMENTED)"  location: "JS frame :: resource://gre/modules/BackgroundUpdate.jsm :: _reasonsToNotScheduleUpdates :: line 241"  data: no]
+DevTools listening on ws://localhost:59697/devtools/browser/e3a93dfe-8cc2-4840-b066-9f8aea320a92
+1650919812361	Marionette	INFO	Listening on port 59714
+Read port: 59714
+1650919812433	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: https://eus.rubiconproject.com/usync.js, line 4: SecurityError: The operation is insecure.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/LE6A1jkwhzHIveaC2PWdXlafu4EKGxRoxiYl273qJjE.js line 1 > eval line 3577 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/LE6A1jkwhzHIveaC2PWdXlafu4EKGxRoxiYl273qJjE.js line 1 > eval line 7123 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://pagead2.googlesyndication.com/bg/LE6A1jkwhzHIveaC2PWdXlafu4EKGxRoxiYl273qJjE.js line 1 > eval line 5191 > eval line 1 > eval line 1 > eval, line 1: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+JavaScript warning: https://z.moatads.com/essencedigitalna20153870852878/moatad.js#moatClientLevel1=3691103&moatClientLevel2=27524984&moatClientLevel3=525281676&moatClientLevel4=169081148&moatClientSlicer1=6023101&moatClientSlicer2=333448234&zMoatG=ct=US&st=SC&city=15295&dma=9&zp=29910&bw=4&ord=187922384&zMoatAUCID=, line 244: WEBGL_debug_renderer_info is deprecated in Firefox and will be removed. Please use RENDERER.
+1650919821553	Marionette	INFO	Stopped listening on port 59714
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.
+JavaScript error: , line 0: TypeError: NetworkError when attempting to fetch resource.

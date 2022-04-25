@@ -47,14 +47,15 @@ class LoLPlayerScraper:
         # now get the tournament results
         self.page = requests.get(fandom_wiki_base_url + player_name + '/Tournament_Results')
         tournament_results = self.soup.find(id='template-reload-1')
-        print(tournament_results.prettify())
+        tr_text = tournament_results.get_text().lower()
+        appearances = tr_text.count('msi') + tr_text.count('worlds')
 
         return {
             'player': player_name,
             'role': role,
             'team': team,
             'residency': res,
-            'appearances': 'appearances',
+            'appearances': appearances,
             'domestic titles': 'd_titles',
             'last_updated': date.today().timetuple()[0:3]
         }
