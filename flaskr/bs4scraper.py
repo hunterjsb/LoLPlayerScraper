@@ -16,6 +16,8 @@ class LoLPlayerScraper:
     """
     def __init__(self):
         self.infobox_keywords = ['residency', 'team', 'role']
+        self.title_keywords = ['playoffs', 'showdown', 'championship']
+        self.region_keywords = ['lec', 'lcs', 'lck', 'lpl']
         self.page = None
 
     @property
@@ -41,26 +43,37 @@ class LoLPlayerScraper:
         role = player_attr_list[2].split()[1]
 
         # translate the scraped terms into standardized abbreviations
-        team = team_dict[team]
-        role = role_dict[role]
+        team = team_dict[team] if team in team_dict else team
+        role = role_dict[role] if role in role_dict else role
 
         # now get the tournament results
         self.page = requests.get(fandom_wiki_base_url + player_name + '/Tournament_Results')
         tournament_results = self.soup.find(id='template-reload-1')
         tr_text = tournament_results.get_text().lower()
         appearances = tr_text.count('msi') + tr_text.count('worlds')
+        # print(tournament_results.prettify())
 
+        d_titles = 0
+        placement_results = tournament_results.find_all(class_="achievements-place")
+        for placement in placement_results:
+            print(placement)
+            if placement.text == '1':
+                title = placement.next_sibling.a["data-to-titles"].lower()
+                if any(_ in title for _ in self.title_keywords) and any(_ in title for _ in self.region_keywords):
+                    d_titles += 1
+                if 'champions/' in title and 'preseason' not in title:
+                    d_titles += 1
         return {
             'player': player_name,
             'role': role,
             'team': team,
             'residency': res,
             'appearances': appearances,
-            'domestic titles': 'd_titles',
+            'domestic titles': d_titles,
             'last_updated': date.today().timetuple()[0:3]
         }
 
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper()
-    print(scraper.get_player_stats('impact'))
+    print(scraper.get_player_stats('faker'))
