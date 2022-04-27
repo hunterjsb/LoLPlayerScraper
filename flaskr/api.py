@@ -41,5 +41,9 @@ def get_player_data(name, update_age=7):
         player_db.update(player_data, player.player == name)
         return dumps(player_data)
 
+    elif num_of_instance > 1:
+
+        raise IndexError("2 instances of player found. Something has gone very wrong.") 
+
     return dumps(instances[0])
     
