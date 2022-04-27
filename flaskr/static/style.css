@@ -1,5 +1,5 @@
 body {
-    padding: 40px 10px;
+    padding: 20px 10px;
     background-color: rgb(36, 36, 36);
   }
 
@@ -27,3 +27,23 @@ p {
    color: white;
    background-color: 	rgb(82, 82, 82);
  }
+
+ .parallax {
+  /* The image used */
+  background-image: url("img/arena2.png");
+
+  /* Full height */
+  min-height: 900px;
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media only screen and (max-device-width: 1366px) {
+  .parallax {
+    background-attachment: scroll;
+  }
+}

@@ -5,7 +5,7 @@ views_blueprint = Blueprint('views_blueprint', __name__)
 
 @views_blueprint.route('/')
 def index():
-    return render_template('index.html', debug_str='foobar')
+    return render_template('index.html')
 
 
 @views_blueprint.route('/about/')

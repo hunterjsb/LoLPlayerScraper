@@ -11,9 +11,8 @@ player_db = TinyDB('resource/player_db.json')
 
 
 @api_blueprint.route('/api/get_player_data/<name>')
-def get_player_data(name):
+def get_player_data(name, update_age=7):
 
-    update_age = 7
     player = Query()
     instances = player_db.search(player.player == name)
     num_of_instances = len(instances)
