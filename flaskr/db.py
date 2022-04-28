@@ -4,6 +4,7 @@ from datetime import date
 
 from flaskr.bs4scraper import LoLPlayerScraper
 
+
 def get_player_data(name, update_age=7):
 
     player_db = TinyDB('resource/player_db.json')
