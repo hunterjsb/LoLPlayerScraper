@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 import requests
+import pandas as pd
 
 from datetime import date
 import json
+import csv
 
 
 class LoLPlayerScraper:
@@ -11,10 +13,12 @@ class LoLPlayerScraper:
     returns: dict of the above
     Player's IGN capitalization is often important!
     """
+
     def __init__(self, debug=False):
         self.infobox_keywords = ['residency', 'team', 'role']
         self.title_keywords = ['playoffs', 'showdown', 'championship']
         self.region_keywords = ['lec', 'lcs', 'lck', 'lpl']
+        self.fandom_url = 'https://lol.fandom.com/wiki/'
         self.page = None
 
         uri = 'resource/fandom_attributes.json' if not debug else '../resource/fandom_attributes.json'
@@ -25,10 +29,9 @@ class LoLPlayerScraper:
     def soup(self):
         return BeautifulSoup(self.page.text, 'html.parser')
 
-    def get_player_stats(self, player_name: str):
+    def get_player(self, player_name: str):
         # first get the page, use default python HTML parser
-        fandom_wiki_base_url = 'https://lol.fandom.com/wiki/'
-        self.page = requests.get(fandom_wiki_base_url + player_name)
+        self.page = requests.get(self.fandom_url + player_name)
 
         # get the player table on the player's info page -- retrieve res, team, role
         # we make the ResultSet into a list then filter out the elements that do not contain certain substrings
@@ -48,7 +51,7 @@ class LoLPlayerScraper:
         role = self.role_dict[role] if role in self.role_dict else role
 
         # now get the tournament results
-        self.page = requests.get(fandom_wiki_base_url + player_name + '/Tournament_Results')
+        self.page = requests.get(self.fandom_url + player_name + '/Tournament_Results')
         tournament_results = self.soup.find(id='template-reload-1')
         tr_text = tournament_results.get_text().lower()
         appearances = tr_text.count('msi') + tr_text.count('worlds')
@@ -73,7 +76,15 @@ class LoLPlayerScraper:
             'last_updated': date.today().timetuple()[0:3]
         }
 
+    def get_team(self, team_name: str):
+        self.page = requests.get(self.fandom_url + team_name)
+        team_table = self.soup.find(id="team-members-players").find_all('td')
+        team_player_list = [x.get_text(separator=' ').lower() for x in team_table]
+        print(team_player_list)
+
+        print(requests.get("https://docs.google.com/spreadsheets/d/1Y7k5kQ2AegbuyiGwEPsa62e883FYVtHqr6UVut9RC4o/pubhtml#/export?format=csv").text)
+
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    print(scraper.get_player_stats('perkz'))
+    print(scraper.get_player('perkz'))
