@@ -4,9 +4,6 @@ import requests
 from datetime import date
 import json
 
-with open('resource/fandom_attributes.json') as f:
-    team_dict, role_dict, region_dict = json.load(f)  # region dict not used atm
-
 
 class LoLPlayerScraper:
     """
@@ -14,11 +11,15 @@ class LoLPlayerScraper:
     returns: dict of the above
     Player's IGN capitalization is often important!
     """
-    def __init__(self):
+    def __init__(self, debug=False):
         self.infobox_keywords = ['residency', 'team', 'role']
         self.title_keywords = ['playoffs', 'showdown', 'championship']
         self.region_keywords = ['lec', 'lcs', 'lck', 'lpl']
         self.page = None
+
+        uri = 'resource/fandom_attributes.json' if not debug else '../resource/fandom_attributes.json'
+        with open(uri) as f:
+            self.team_dict, self.role_dict, self.region_dict = json.load(f)  # region dict not used atm
 
     @property
     def soup(self):
@@ -43,8 +44,8 @@ class LoLPlayerScraper:
         role = player_attr_list[2].split()[1]
 
         # translate the scraped terms into standardized abbreviations
-        team = team_dict[team] if team in team_dict else team
-        role = role_dict[role] if role in role_dict else role
+        team = self.team_dict[team] if team in self.team_dict else team
+        role = self.role_dict[role] if role in self.role_dict else role
 
         # now get the tournament results
         self.page = requests.get(fandom_wiki_base_url + player_name + '/Tournament_Results')
@@ -56,7 +57,6 @@ class LoLPlayerScraper:
         d_titles = 0
         placement_results = tournament_results.find_all(class_="achievements-place")
         for placement in placement_results:
-            print(placement)
             if placement.text == '1':
                 title = placement.next_sibling.a["data-to-titles"].lower()
                 if any(_ in title for _ in self.title_keywords) and any(_ in title for _ in self.region_keywords):
@@ -75,5 +75,5 @@ class LoLPlayerScraper:
 
 
 if __name__ == "__main__":
-    scraper = LoLPlayerScraper()
-    print(scraper.get_player_stats('faker'))
+    scraper = LoLPlayerScraper(debug=True)
+    print(scraper.get_player_stats('perkz'))
