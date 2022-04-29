@@ -1,5 +1,5 @@
 # WordLoL (title WIP)
-An eSport player API and LoL eSports player guessing game.
+An esport player API and LoL esports player guessing game.
 ### Installation
 Good luck.
 ### Website
