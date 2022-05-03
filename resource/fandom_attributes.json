@@ -28,19 +28,16 @@
     "top": "top"
 },
 {
-    "eueurope": "eu",
-    "nanorth": "na",
-    "trturkey": "tr",
-    "ciscis": "cis",
-    "krkorea": "kr",
-    "cnchina": "cn",
-    "oceoceania": "oce",
-    "latlatin": "lat",
-    "laslas": "lat",
-    "bril": "br",
-    "jpjapan": "jp",
-    "pcspcs": "pcs",
-    "lmslms": "pcs",
-    "vnvietnam": "vn",
-    "seasea": "vn"
+    "LEC": "LoL_European_Championship",
+    "LCS": "League_Championship_Series",
+    "LCK": "League_of_Legends_Champions_Korea",
+    "LPL": "LoL_Pro_League",
+    "CBLOL": "Circuit_Brazilian_League_of_Legends",
+    "LCL": "League_of_Legends_Continental_League",
+    "LJL": "League_of_Legends_Japan_League",
+    "LLA": "Liga_Latinoamérica",
+    "OPL": "Oceanic_Pro_League",
+    "PCS": "Pacific_Championship_Series",
+    "TCL": "Turkish_Championship_League",
+    "VCS": "Vietnam_Championship_Series"
 }]

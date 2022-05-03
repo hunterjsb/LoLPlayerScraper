@@ -55,7 +55,6 @@ class LoLPlayerScraper:
         tournament_results = self.soup.find(id='template-reload-1')
         tr_text = tournament_results.get_text().lower()
         appearances = tr_text.count('msi') + tr_text.count('worlds')
-        # print(tournament_results.prettify())
 
         d_titles = 0
         placement_results = tournament_results.find_all(class_="achievements-place")
@@ -76,16 +75,25 @@ class LoLPlayerScraper:
             'last_updated': datetime.datetime.utcnow()
         }
 
-    def get_team(self, team_name: str):
+    def get_roster(self, team_name: str):
+        players = []
         self.page = requests.get(self.fandom_url + team_name)
-        team_table = self.soup.find(id="team-members-players").find_all('td')
-        team_player_list = [x.get_text(separator=' ').lower() for x in team_table]
-        print(team_player_list)
+        team_table = self.soup.find(class_="team-members").find_all('tr')
 
-        print(requests.get("https://docs.google.com/spreadsheets/d/1Y7k5kQ2AegbuyiGwEPsa62e883FYVtHqr6UVut9RC4o/"
-                           "pubhtml#/export?format=csv").text)
+        for row in team_table:
+            row = row.get_text(separator=' ').split()
+            if any('Sub/' in _ for _ in row):  # drop substitutes
+                continue
+            players.append(row[1])
+
+        return players[1:]
+
+    def get_region(self, region_name: str, season='2022_Season'):
+        self.page = requests.get(self.fandom_url + region_name + '/' + season)
+        teams_table = [self.soup.find(class_="wikitable2 standings").find_all('tr')]
 
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    print(scraper.get_player('perkz'))
+    print(scraper.get_region('LCS'))
+
