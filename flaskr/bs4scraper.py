@@ -88,12 +88,20 @@ class LoLPlayerScraper:
 
         return players[1:]
 
-    def get_region(self, region_name: str, season='2022_Season'):
+    def get_teams_by_region(self, region_name: str, season='2022_Season'):
+        teams = []
         self.page = requests.get(self.fandom_url + region_name + '/' + season)
-        teams_table = [self.soup.find(class_="wikitable2 standings").find_all('tr')]
+        teams_table = self.soup.find_all(class_="wikitable2 standings")[-2].find_all('tr')
+        for row in teams_table[6:]:
+            row = row.get_text(separator=' ').split()
+            row = row[3:len(row)-5]
+            name = " ".join(row)
+            teams.append(name)
+            print(name, self.get_roster(name))
+
+        return teams
 
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    print(scraper.get_region('LCS'))
-
+    print(scraper.get_teams_by_region('LEC'))
