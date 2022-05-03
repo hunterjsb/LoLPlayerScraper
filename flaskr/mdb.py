@@ -2,39 +2,47 @@ from json import dumps
 import datetime
 from pymongo import MongoClient
 
-from flaskr.bs4scraper import LoLPlayerScraper
-
 
 class DBUtil:
     def __init__(self, debug=False):
+        if debug:
+            from bs4scraper import LoLPlayerScraper
+        else:
+            from flaskr.bs4scraper import LoLPlayerScraper  # will run __init__.py
+
         self.db = MongoClient('localhost', 27017).openJosh
         self.scraper = LoLPlayerScraper(debug=debug)
 
     def insert_raw(self, player_data: dict):
+        """insert whole dict as player object, no data validation!"""
         return self.db.players.insert_one(player_data).inserted_id
 
     def drop_player(self, player_name: str):
-        return self.db.player.delete_many({"name": player_name})
+        """drop all players of a given name"""
+        return self.db.players.delete_many({'player': player_name})
 
     def get_player(self, player_name: str, update_age=7):
+        """look for a player in the DB, if not found, try and get from lol fandom, or update if entry is old"""
         player = self.db.players.find_one({'player': player_name})
 
-        if not player:
+        def default_dump(d: str):  # _id (mongo object) and last_updated (datetime) to str for dumps
+            return dumps(d, default=lambda o: str(o))
+
+        if not player:  # if not in DB
             player_data = self.scraper.get_player(player_name)
             self.db.players.insert_one(player_data)
-            return dumps(player_data)
+            return default_dump(player_data)
 
-        if (datetime.datetime.utcnow() - datetime.datetime(*player['last_updated'])).days >= update_age:
+        if (datetime.datetime.utcnow() - player['last_updated']).days >= update_age:  # old entry
             player_data = self.scraper.get_player(player_name)
             self.db.players.replace_one({player, player_data})
-            return dumps(player_data)
+            return default_dump(player_data)
 
-        player.pop('_id')
-        return player
+        return default_dump(player)
 
 
 if __name__ == "__main__":
-    entry = {
+    entry = {  # for testing .insert_raw method
         "player": "perkz",
         "role": "mid",
         "team": "vit",
@@ -45,4 +53,4 @@ if __name__ == "__main__":
     }
 
     dbu = DBUtil(debug=True)
-    print(dbu.get_player('perkz'))
+    print(dbu.get_player('impact'))

@@ -1,8 +1,9 @@
 from flask import Blueprint
 
-from flaskr import db
+from flaskr.mdb import DBUtil
 
 api_blueprint = Blueprint('api_blueprint', __name__)
+db = DBUtil()
 
 
 @api_blueprint.route('/api/get_player/<name>')

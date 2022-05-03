@@ -2,7 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import pandas as pd
 
-from datetime import date
+import datetime
 import json
 import csv
 
@@ -73,7 +73,7 @@ class LoLPlayerScraper:
             'residency': res,
             'appearances': appearances,
             'domestic titles': d_titles,
-            'last_updated': date.today().timetuple()[0:3]
+            'last_updated': datetime.datetime.utcnow()
         }
 
     def get_team(self, team_name: str):
@@ -82,7 +82,8 @@ class LoLPlayerScraper:
         team_player_list = [x.get_text(separator=' ').lower() for x in team_table]
         print(team_player_list)
 
-        print(requests.get("https://docs.google.com/spreadsheets/d/1Y7k5kQ2AegbuyiGwEPsa62e883FYVtHqr6UVut9RC4o/pubhtml#/export?format=csv").text)
+        print(requests.get("https://docs.google.com/spreadsheets/d/1Y7k5kQ2AegbuyiGwEPsa62e883FYVtHqr6UVut9RC4o/"
+                           "pubhtml#/export?format=csv").text)
 
 
 if __name__ == "__main__":
