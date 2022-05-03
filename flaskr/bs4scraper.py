@@ -94,8 +94,15 @@ class LoLPlayerScraper:
         teams_table = self.soup.find_all(class_="wikitable2 standings")[-2].find_all('tr')
         for row in teams_table[6:]:
             row = row.get_text(separator=' ').split()
-            row = row[3:len(row)-5]
+            if (region_name == 'LCS') or (region_name == 'LEC'):
+                row = row[3:len(row) - 5]
+            else:
+                row = row[3:len(row) - 10]
+            if '1' in row:  # Remove footnotes
+                row.remove('1')
             name = " ".join(row)
+            if name == '':  # Remove blank rows
+                continue
             teams.append(name)
             print(name, self.get_roster(name))
 
@@ -104,4 +111,5 @@ class LoLPlayerScraper:
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    print(scraper.get_teams_by_region('LEC'))
+    # scraper.get_roster(RNG)
+    print(scraper.get_teams_by_region('LCK'))
