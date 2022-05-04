@@ -13,7 +13,7 @@ class DBUtil:
         self.db = MongoClient('localhost', 27017).openJosh
         self.scraper = LoLPlayerScraper(debug=debug)
 
-    def insert_raw(self, player_data: dict):
+    def insert_raw_players(self, player_data: dict):
         """insert whole dict as player object, no data validation!"""
         return self.db.players.insert_one(player_data).inserted_id
 

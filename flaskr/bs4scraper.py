@@ -75,41 +75,54 @@ class LoLPlayerScraper:
             'last_updated': datetime.datetime.utcnow()
         }
 
-    def get_roster(self, team_name: str):
+    def get_team(self, team_name: str):
+        """Given a team's name, return the team's name, region, and roster (as a list of player names)"""
         players = []
+        team_region = None
         self.page = requests.get(self.fandom_url + team_name)
-        team_table = self.soup.find(class_="team-members").find_all('tr')
+        team_player_table = self.soup.find(class_="team-members").find_all('tr')
+        team_stats_table = self.soup.find(class_="InfoboxTeam").find_all('tr')
+        for row in team_stats_table:
+            row = row.get_text(separator=' ').split()
+            if 'Region' in row:
+                team_region = row[1]
 
-        for row in team_table:
+        for row in team_player_table:
             row = row.get_text(separator=' ').split()
             if any('Sub/' in _ for _ in row):  # drop substitutes
                 continue
             players.append(row[1])
 
-        return players[1:]
+        return {
+            'name': team_name,
+            'region': team_region,
+            'roster': players[1:],
+            'last_updated': datetime.datetime.utcnow()
+        }
 
     def get_teams_by_region(self, region_name: str, season='2022_Season'):
+        """Given a region code, return all the teams that played in the spring split as a list"""
         teams = []
         self.page = requests.get(self.fandom_url + region_name + '/' + season)
         teams_table = self.soup.find_all(class_="wikitable2 standings")[-2].find_all('tr')
+
         for row in teams_table[6:]:
             row = row.get_text(separator=' ').split()
             if (region_name == 'LCS') or (region_name == 'LEC'):
                 row = row[3:len(row) - 5]
             else:
                 row = row[3:len(row) - 10]
+
             if '1' in row:  # Remove footnotes
                 row.remove('1')
             name = " ".join(row)
             if name == '':  # Remove blank rows
                 continue
             teams.append(name)
-            print(name, self.get_roster(name))
 
         return teams
 
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    # scraper.get_roster(RNG)
-    print(scraper.get_teams_by_region('LCK'))
+    print(scraper.get_team('Cloud9'))
