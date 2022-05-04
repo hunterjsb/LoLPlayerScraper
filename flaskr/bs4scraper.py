@@ -1,10 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
-import pandas as pd
 
 import datetime
 import json
-import csv
 
 
 class LoLPlayerScraper:
