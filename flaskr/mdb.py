@@ -70,4 +70,3 @@ if __name__ == "__main__":
     }
 
     dbu = DBUtil(debug=True)
-    print(dbu.get_team('V5'))

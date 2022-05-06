@@ -13,11 +13,11 @@ class LoLPlayerScraper:
     """
 
     def __init__(self, debug=False):
-        self.infobox_keywords = ['residency', 'team', 'role']
-        self.title_keywords = ['playoffs', 'showdown', 'championship']
-        self.region_keywords = ['lec', 'lcs', 'lck', 'lpl']
+        self.infobox_keywords = ('residency', 'team', 'role')
+        self.title_keywords = ('playoffs', 'showdown', 'championship')
+        self.region_keywords = ('lec', 'lcs', 'lck', 'lpl')
         self.fandom_url = 'https://lol.fandom.com/wiki/'
-        self.page = None
+        self.page = None  # will be requests object, set by each function
 
         uri = 'resource/fandom_attributes.json' if not debug else '../resource/fandom_attributes.json'
         with open(uri) as f:
@@ -123,4 +123,4 @@ class LoLPlayerScraper:
 
 if __name__ == "__main__":
     scraper = LoLPlayerScraper(debug=True)
-    print(scraper.get_team('Cloud9'))
+    print(scraper.get_player('blaber'))
