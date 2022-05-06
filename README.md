@@ -30,3 +30,7 @@ requests.get('www.redacted.com/api/get_player/Broken_Blade')
 # returns a dictionary with team attributes
 requests.get('www.redacted.com/api/get_player/GGS')
 ```
+
+.. note::
+
+   This project is under active development.
