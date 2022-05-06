@@ -24,13 +24,11 @@ Examples
 ----------
 
 ```python
+import requests
+
 # returns a dictionary with player attributes
-requests.get('www.redacted.com/api/get_player/Broken_Blade')
+requests.get('www.domain.com/api/get_player/Broken_Blade')
 
 # returns a dictionary with team attributes
-requests.get('www.redacted.com/api/get_player/GGS')
+requests.get('www.domain.com/api/get_player/GGS')
 ```
-
-.. note::
-
-   This project is under active development.
