@@ -1,11 +1,9 @@
 openJosh
 =================
--------------------------
 Official API of the LCS
--------------------------
 
 Introduction
-============
+----------
 
 We are a team of elite gamers dedicated to bringing you the world's premier LoL data source. The openJosh team has
 over 200+ years of collective experience which is why we are able to maintain the world's only open-source pro LOL API.
@@ -22,7 +20,10 @@ All endpoints are **CASE SENSITIVE**!
 
 Examples
 ----------
-
+  
+```bash
+  pip install requests
+```
 ```python
 import requests
 
@@ -30,5 +31,5 @@ import requests
 requests.get('www.domain.com/api/get_player/Broken_Blade')
 
 # returns a dictionary with team attributes
-requests.get('www.domain.com/api/get_player/GGS')
+requests.get('www.domain.com/api/get_team/GGS')
 ```
