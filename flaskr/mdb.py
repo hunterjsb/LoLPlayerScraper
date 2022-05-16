@@ -1,7 +1,8 @@
 from json import dumps
 import datetime
+import re
 from pymongo import MongoClient
-import hashlib
+from hashlib import sha256
 
 
 def default_dumps(d: str):  # _id (mongo object) and last_updated (datetime) to str for dumps
@@ -63,16 +64,43 @@ class UserDbUtil:
     def __init__(self):
         self.db = MongoClient('localhost', 27017).openJosh
 
-    def create_user(self, email: str, password: str, user: str):
-        pass
+    def create_user(self, username: str, password: str, email: str):
+        if self.db.users.find_one({'username': username}):
+            raise FileExistsError('Username taken')
 
-    def delete_user(self, email: str):
-        pass
+        else:
+            m = sha256()
+            m.update(password.encode('utf-8'))
+            m.digest()
 
-    def check_password(self, email: str, password: str): # return true if the passwords match
-        pass
+            return self.db.users.insert_one({'username': username, 'password_hash': m.digest(), 'email': email}).inserted_id
+
+    def delete_user(self, username: str):
+        return self.db.users.delete_many({'username': username})
+
+    def get_user(self, username: str):
+        result = self.db.users.find_one({'username': username})
+        if result:
+            return result
+        else:
+            raise IndexError('Username not found')
+
+    def check_password(self, username: str, password: str):
+        m = sha256()
+        m.update(password.encode('utf-8'))
+
+        try:
+            result = self.get_user(username)
+            if result['password_hash'] == m.digest():
+                return True
+            else:
+                return False
+
+        except Exception as e:
+            raise e
 
 
+'''
 if __name__ == "__main__":
     entry = {  # for testing .insert_raw method
         "player": "perkz",
@@ -85,3 +113,10 @@ if __name__ == "__main__":
     }
 
     dbu = ApiDbUtil(debug=True)
+'''
+
+
+if __name__ == '__main__':
+
+    db = UserDbUtil()
+    print(db.check_password('test', 'pass1234'))
