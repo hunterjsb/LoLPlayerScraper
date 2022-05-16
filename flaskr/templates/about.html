@@ -1,6 +1,37 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} About {% endblock %}</h1>
-    <h3>We are a dank ass service.</h3>
+<canvas id="myChart" width="400" height="200"></canvas>
+<script>
+const ctx = document.getElementById('myChart');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+    labels: ["Impact", "Perkz", "Olleh"],
+    datasets: [
+        {
+            label: "Domestic Titles",
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1,
+            data: [6,11,3]
+        },
+        {
+            label: "International Appearances",
+            backgroundColor: 'rgba(255, 206, 86, 0.2)',
+            borderColor: 'rgba(255, 206, 86, 1)',
+            borderWidth: 1,
+            data: [4,10,1]
+        }
+    ]
+},
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
 {% endblock %}
