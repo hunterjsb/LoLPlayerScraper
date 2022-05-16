@@ -1,13 +1,14 @@
 from json import dumps
 import datetime
 from pymongo import MongoClient
+import hashlib
 
 
 def default_dumps(d: str):  # _id (mongo object) and last_updated (datetime) to str for dumps
     return dumps(d, default=lambda o: str(o))
 
 
-class DBUtil:
+class ApiDbUtil:
     def __init__(self, debug=False):
         if debug:
             from bs4scraper import LoLPlayerScraper
@@ -56,6 +57,20 @@ class DBUtil:
             return default_dumps(team_data)
 
         return default_dumps(team)
+
+
+class UserDbUtil:
+    def __init__(self):
+        self.db = MongoClient('localhost', 27017).openJosh
+
+    def create_user(self, email: str, password: str, user: str):
+        pass
+
+    def delete_user(self, email: str):
+        pass
+
+    def check_password(self, email: str, password: str): # return true if the passwords match
+        pass
 
 
 if __name__ == "__main__":

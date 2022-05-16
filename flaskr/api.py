@@ -3,7 +3,7 @@ from flask import Blueprint
 from flaskr.mdb import DBUtil
 
 api_blueprint = Blueprint('api_blueprint', __name__)
-db = DBUtil()
+db = ApiDbUtil()
 
 
 @api_blueprint.route('/api/get_player/<name>')
