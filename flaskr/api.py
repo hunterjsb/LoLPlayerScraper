@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from flaskr.mdb import DBUtil
+from flaskr.mdb import ApiDbUtil
 
 api_blueprint = Blueprint('api_blueprint', __name__)
 db = ApiDbUtil()

@@ -84,4 +84,4 @@ if __name__ == "__main__":
         "last_updated": datetime.datetime.utcnow()
     }
 
-    dbu = DBUtil(debug=True)
+    dbu = ApiDbUtil(debug=True)
