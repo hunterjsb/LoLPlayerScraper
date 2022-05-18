@@ -1,37 +1,79 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<canvas id="myChart" width="400" height="200"></canvas>
-<script>
-const ctx = document.getElementById('myChart');
-const myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-    labels: ["Impact", "Perkz", "Olleh"],
-    datasets: [
-        {
-            label: "Domestic Titles",
-            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-            borderColor: 'rgba(54, 162, 235, 1)',
-            borderWidth: 1,
-            data: [6,11,3]
-        },
-        {
-            label: "International Appearances",
-            backgroundColor: 'rgba(255, 206, 86, 0.2)',
-            borderColor: 'rgba(255, 206, 86, 1)',
-            borderWidth: 1,
-            data: [4,10,1]
-        }
-    ]
-},
-    options: {
-        scales: {
-            y: {
-                beginAtZero: true
-            }
-        }
-    }
-});
-</script>
+
+<style>
+.card-img-top {
+  height: 75%;
+  width: 75%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+<h1> Build Your Dream Team</h1>
+<div class="card-deck">
+  <div class="card text-center">
+    <img class="card-img-top" src="https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/4/48/GG_Licorice_2022_Split_1.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Licorice</h5>
+      <p class="card-text">Role: Top<br>Team: GG <br>PPG: 14 <br>Cost: 8</p>
+      <a href="#" class="btn btn-primary">Draft</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card text-center">
+    <img class="card-img-top" src="https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/f/f1/100_Closer_2022_Split_1.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-titler">Closer</h5>
+      <p class="card-text">Role: Jun<br>Team: 100 <br>PPG: 17 <br>Cost: 10</p>
+      <a href="#" class="btn btn-primary">Draft</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <div class="card text-center">
+    <img class="card-img-top" src="https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/0/0c/VIT_Perkz_2022_Split_1.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Perkz</h5>
+        <p class="card-text">Role: Mid<br>Team: VIT <br>PPG: 21 <br>Cost: 13</p>
+      <a href="#" class="btn btn-primary">Draft</a>
+      </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+      <div class="card text-center">
+    <img class="card-img-top" src="https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/f/ff/EG_Danny_2022_Split_1.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Danny</h5>
+    <p class="card-text">Role: ADC<br>Team: EG <br>PPG: 15 <br>Cost: 9</p>
+      <a href="#" class="btn btn-primary">Draft</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+      <div class="card text-center">
+    <img class="card-img-top" src="https://static.wikia.nocookie.net/lolesports_gamepedia_en/images/7/74/G2_Mikyx_2021_Split_2.png" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">Mikyx</h5>
+    <p class="card-text">Role: Sup<br>Team: XL<br>PPG: 11 <br>Cost: 7</p>
+      <a href="#" class="btn btn-primary">Draft</a>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+</div>
 {% endblock %}
