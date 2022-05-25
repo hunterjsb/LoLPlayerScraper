@@ -13,5 +13,5 @@ Array.from(btns).forEach(item => {
     } else {
         item.className = 'btn btn-success mr-sm-2 ';
     }
-});
+  });
 });
