@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!-- PLAYER INPUT -->
+<h1 class="text-center" style="margin-top: 30px;"> WordLoL </h1>
+<form class="form-row justify-content-center" style="margin-top: 30px;">
+<div class="col-lg-6">
+  <label class="sr-only" for="inlineFormInputName2">Name</label>
+  <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Guess a Player">
+</div>
+  <button type="submit" class="btn btn-primary mb-2" style="min-width: 100px;">Submit</button>
+</form>
+
+<!-- REGION CHECKBOXES -->
+<div class="row justify-content-center" style="margin-top: 10px;">
+  {% set regions = ['LCS', 'LEC', 'LCK', 'LPL'] -%}
+  {% for region in regions %}
+    <button type="submit" onclick="addRegion('{{ region }}')"
+            class="btn btn-success mr-sm-2 {{ 'active' if region in active_regions -}}"
+            name="{{ region.lower() }}" value="{{ region }}" style="min-width: 120px;">{{ region }}
+    </button>
+  {% endfor %}
+  <button type="submit" class="btn btn-success" style="min-width: 120px;">Stars</button>
+</div>
+<script src="{{ url_for('static', filename='js/active_buttons.js') }}"></script>
+{% endblock %}
