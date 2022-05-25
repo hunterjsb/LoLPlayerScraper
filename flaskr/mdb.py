@@ -38,7 +38,7 @@ class ApiDbUtil:
 
         if (datetime.datetime.utcnow() - player['last_updated']).days >= update_age:  # old entry
             player_data = self.scraper.get_player(player_name)
-            self.db.players.replace_one({player, player_data})
+            self.db.players.replace_one(player, player_data)
             return default_dumps(player_data)
 
         return default_dumps(player)
@@ -54,7 +54,7 @@ class ApiDbUtil:
 
         if (datetime.datetime.utcnow() - team['last_updated']).days >= update_age:  # old entry
             team_data = self.scraper.get_team(team_name)
-            self.db.players.replace_one({team, team_data})
+            self.db.players.replace_one(team, team_data)
             return default_dumps(team_data)
 
         return default_dumps(team)
@@ -118,5 +118,5 @@ if __name__ == "__main__":
 
 if __name__ == '__main__':
 
-    db = UserDbUtil()
-    print(db.check_password('test', 'pass1234'))
+    db = ApiDbUtil(debug=True)
+    print(db.get_player('perkz'))
