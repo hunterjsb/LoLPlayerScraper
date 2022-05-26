@@ -1,11 +1,10 @@
 from json import dumps
 import datetime
-import re
 from pymongo import MongoClient
 from hashlib import sha256
 
 
-def default_dumps(d: str):  # _id (mongo object) and last_updated (datetime) to str for dumps
+def default_dumps(d: str):  # converts `_id` (mongo object) and `last_updated` (datetime) to str for dumps
     return dumps(d, default=lambda o: str(o))
 
 
@@ -119,4 +118,4 @@ if __name__ == "__main__":
 if __name__ == '__main__':
 
     db = ApiDbUtil(debug=True)
-    print(db.get_player('perkz'))
+    print(db.get_player('mikyx'))
