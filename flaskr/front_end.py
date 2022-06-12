@@ -19,3 +19,8 @@ def about():
 @views_blueprint.route('/api/')
 def api():
     return render_template('api.html')
+
+
+@views_blueprint.route('/fantasy/')
+def fantasy():
+    return render_template('fantasy.html')
