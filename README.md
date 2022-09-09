@@ -5,8 +5,7 @@ Official API of the LCS
 Introduction
 ----------
 
-We are a team of elite gamers dedicated to bringing you the world's premier LoL data source. The openJosh team has
-over 200+ years of collective experience which is why we are able to maintain the world's only open-source pro LOL API.
+We are a team of Python coders dedicated to bringing you the an open-source LoL data API.
 
 Endpoints
 ----------
