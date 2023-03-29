@@ -27,8 +27,8 @@ Examples
 import requests
 
 # returns a dictionary with player attributes
-requests.get('www.domain.com/api/get_player/Broken_Blade')
+requests.get('www.lolapi.de/api/get_player/Broken_Blade')
 
 # returns a dictionary with team attributes
-requests.get('www.domain.com/api/get_team/GGS')
+requests.get('www.lolapi.de/api/get_team/GGS')
 ```
