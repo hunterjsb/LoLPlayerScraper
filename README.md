@@ -5,7 +5,7 @@ Official API of the LCS
 Introduction
 ----------
 
-We are a team of Python coders dedicated to bringing you an open-source LoL data API.
+We are a team of elite devs dedicated to bringing you an open-source LoL data API.
 
 Endpoints
 ----------
